@@ -1,5 +1,6 @@
 #include "nwpwin.h"
 #include "resource.h"
+#include <format>
 
 // there are 4 project configurations: Debug, Release, Debug Unicode, Release Unicode
 // base class window is extended with TCHAR support, keyboard, mouse, timer virtual functions
@@ -60,7 +61,7 @@ protected:
 	void on_timer(int id) override
 	{
 		// change main window caption
-		tstring s = _T("NWP 4 - ") + to_tstring(timer++);
+		const auto s = std::format(_T("NWP 4 - {}"), timer++);
 		SetWindowText(*this, s.c_str());
 	}
 
@@ -68,7 +69,7 @@ protected:
 	{ 
 		// display kordinates on double click
 		// do not forget CS_DBLCLKS in WNDCLASS
-		tstring s = _T("double click\n(") + to_tstring(p.x) + _T(", ") + to_tstring(p.y) + _T(")");
+		const auto s = std::format(_T("double click\n({}, {})") , p.x, p.y);
 		MessageBox(*this, s.c_str(), _T("NWP 4"), MB_OK | MB_ICONEXCLAMATION);
 	}
 

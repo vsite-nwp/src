@@ -1,8 +1,8 @@
-Dodani èlanovi u klasu View:
+ï»¿Members add to class View:
 - int numPages, fontSize;
 - CString fontName;
 
-Dodane i promijenjene metode:
+Methods added and modified:
 - View::View
 - View::OnDraw
 - View::OnPrint

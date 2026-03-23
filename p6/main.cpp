@@ -4,6 +4,7 @@
 
 #include <time.h>
 #include <vector>
+#include <format>
 
 // left click adds point
 // right click clears all points
@@ -284,7 +285,6 @@ void main_window::map_mode(HDC hdc, RECT rc)
 	::Ellipse(hdc, 0, 0, 10, 10);
 	::SetBkMode(hdc, TRANSPARENT); // do not fill text background
 	for(int i=0; i<10; ++i){
-		tstring s = to_tstring(i);
 		// horizontal line
 		::MoveToEx(hdc, 0, i, nullptr); ::LineTo(hdc, 10, i);
 		::SetTextAlign(hdc, TA_BOTTOM|TA_LEFT);
@@ -292,7 +292,7 @@ void main_window::map_mode(HDC hdc, RECT rc)
 		// vertical line
 		::MoveToEx(hdc, i, 0, nullptr);	::LineTo(hdc, i, 10);
 		::SetTextAlign(hdc, TA_BOTTOM|TA_RIGHT);
-		::TextOut(hdc, i, 10, s.c_str(), s.size());
+		::TextOut(hdc, i, 10, std::format(_T("{}"), i).c_str(), s.size());
 	}
 }
 

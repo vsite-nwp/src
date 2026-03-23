@@ -3,11 +3,6 @@
 #include <string>
 #include <tchar.h>
 typedef std::basic_string<TCHAR> tstring;
-#ifdef UNICODE
-#define to_tstring std::to_wstring
-#else
-#define to_tstring std::to_string
-#endif
 
 namespace vsite::nwp {
 

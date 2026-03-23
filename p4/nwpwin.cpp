@@ -1,4 +1,5 @@
 #include "nwpwin.h"
+#include <format>
 
 namespace {
 POINT get_point(LPARAM lp)
@@ -24,7 +25,7 @@ int application::run()
 
 tstring window::class_name()
 {
-	return tstring();
+	return {};
 }
 
 bool window::register_class(const tstring& name)
@@ -42,7 +43,7 @@ bool window::register_class(const tstring& name)
 tstring window::generate_class_name()
 {
 	static int n = 1;
-	return _T("NWP") + to_tstring(n++);
+	return std::format(_T("NWP{}"), n++);
 }
 
 bool window::create(HWND parent, DWORD style, LPCTSTR caption, int IdOrMenu, int x, int y, int width, int height)
